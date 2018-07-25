@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+if [ $# -ne 1 ]
+then
+  executable=$(basename -- $0)
+  echo "Usage: $executable FILE.java"
+  exit 1
+fi
+
+
+filename=$1
+exename="${filename%.*}"
+extension="${filename##*.}"
+
+# echo filename = \"$filename\" exename = \"$exename\" extension = \"$extension\"
+
+if [ "$extension" != "java" ]
+then
+  echo "You must use a .java file!"
+  exit 1
+fi
+
+javac $filename
+java $exename
